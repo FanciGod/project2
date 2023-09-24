@@ -1,0 +1,9 @@
+.menu-bar .menu{
+    -fx-label-padding: 20px;
+}
+
+.menu-bar .menu .menu-item {
+    -fx-padding: 19px;
+    -fx-background-size: 20px;
+}
+

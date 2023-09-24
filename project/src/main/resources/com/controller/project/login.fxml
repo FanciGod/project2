@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.project.Login">
+<children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="302.0">
+    <children>
+        <ImageView fitHeight="68.0" fitWidth="76.0" layoutX="112.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/pngtree-desktop-computer-icon-in-line-style-png-image_5045604.jpg" />
+            </image>
+        </ImageView>
+        <Text layoutX="96.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="69.60003662109375">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="23.0" />
+            </font>
+        </Text>
+        <TextField fx:id="username" layoutX="38.0" layoutY="209.0" prefHeight="31.0" prefWidth="186.0" promptText="username">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </TextField>
+        <PasswordField fx:id="password" layoutX="38.0" layoutY="271.0" prefHeight="31.0" prefWidth="186.0" promptText="password">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </PasswordField>
+        <Button fx:id="loginBut" layoutX="96.0" layoutY="344.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="70.0" text="Login" />
+    </children>
+</AnchorPane>
+<AnchorPane prefHeight="500.0" prefWidth="447.0" style="-fx-background-color: #4BFF83;" />
+</children>
+        </HBox>
