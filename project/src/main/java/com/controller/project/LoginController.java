@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
 
 
 import JDBCconnect.model.LoginModel;
@@ -23,10 +24,11 @@ public class LoginController {
         if (user != null && user.getAbility() == 1) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("adminsite.fxml"));
             Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(getClass().getResource("adminsite.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("adminsite.css")).toExternalForm());
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("admin site");
             stage.setScene(scene);
+            stage.resizableProperty().setValue(false);
             stage.show();
         } else if (user != null && user.getAbility() > 1) {
             System.out.println("user site");
@@ -35,6 +37,7 @@ public class LoginController {
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("employee site");
             stage.setScene(scene);
+            stage.resizableProperty().setValue(false);
             stage.show();
         } else if (user == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
