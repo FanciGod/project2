@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class LoginModel {
     public User checkAcc(String username, String password) {
-        String sqlQuery = "SELECT * FROM project.user WHERE username = ? and password = ? and status = '0'";
+        String sqlQuery = "SELECT * FROM project.account Where Account_name = ? and Password = ? and Is_deleted = '0'";
         try (Connection con = ConnectDTB.getJDBCConnect();
              PreparedStatement pre = con.prepareStatement(sqlQuery)) {
             pre.setString(1, username);
@@ -18,9 +18,9 @@ public class LoginModel {
             ResultSet res = pre.executeQuery();
             if (res.next()) {
                 User user = new User();
-                user.setUsername(res.getString("username"));
-                user.setPassword(res.getString("password"));
-                user.setAbility(res.getInt("ability"));;
+                user.setUsername(res.getString("Account_name"));
+                user.setPassword(res.getString("Password"));
+                user.setAbility(res.getInt("Role_ID"));;
                 return user;
             } else {
                 return null;
@@ -31,7 +31,7 @@ public class LoginModel {
     }
 
     public boolean addOne(User user) {
-        String sql = "INSERT INTO `project`.`user` (`username`, `password`, `ability`) VALUES (?, ?, '2');";
+        String sql = "INSERT INTO `project`.`account` (`Account_name`, `Password`, `Role_ID`) VALUES (?, ?, '2');";
         try (Connection connection = ConnectDTB.getJDBCConnect();
              PreparedStatement pre = connection.prepareStatement(sql)) {
             pre.setString(1, user.getUsername());

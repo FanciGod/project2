@@ -10,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -20,6 +23,13 @@ import java.util.ResourceBundle;
 
 
 public class Adminsite implements Initializable {
+    public TableColumn colID;
+    public TableColumn colProName;
+    public TableColumn colGroup;
+    public TableColumn colCapPrice;
+    public TableColumn colPrice;
+    public TableColumn colCurrentIn;
+    public TableView tbProduct;
     Stage stage = new Stage();
     @FXML
     Button outBut;
@@ -52,12 +62,22 @@ public class Adminsite implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         XYChart.Series<Object, Object> series1 = new XYChart.Series<>();
         series1.setName("VND");
-        series1.getData().add(new XYChart.Data<>("19/09", 11));
+        series1.getData().add(new XYChart.Data<>("19/09", 1));
         series1.getData().add(new XYChart.Data<>("20/09", 20));
         series1.getData().add(new XYChart.Data<>("21/09", 14));
         series1.getData().add(new XYChart.Data<>("22/09", 12));
         series1.getData().add(new XYChart.Data<>("23/09", 11));
-
         barChart.getData().addAll(series1);
+
+        colID.setCellFactory(new PropertyValueFactory<>("id"));
+        colProName.setCellFactory(new PropertyValueFactory<>("proName"));
+        colCapPrice.setCellFactory(new PropertyValueFactory<>("importPrice"));
+        colGroup.setCellFactory(new PropertyValueFactory<>("groupProduct"));
+        colPrice.setCellFactory(new PropertyValueFactory<>("sellPrice"));
+        colCurrentIn.setCellFactory(new PropertyValueFactory<>(""));
     }
+
+
+
+    
 }
