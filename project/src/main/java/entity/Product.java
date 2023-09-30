@@ -6,22 +6,43 @@ public class Product {
     private double importPrice;
     private double sellPrice;
     private int quantity;
-    private int categoryID;
+    private String category;
     private String description;
-    private String groupProduct;
+    private String supplier;
 
-    public Product() {
+    public Product(String proName, double importPrice, double sellPrice, int quantity, String category, String description, String supplier) {
+        this.proName = proName;
+        this.importPrice = importPrice;
+        this.sellPrice = sellPrice;
+        this.quantity = quantity;
+        this.category = category;
+        this.description = description;
+        this.supplier = supplier;
     }
 
-    public Product(int id, String proName, double importPrice, double sellPrice, int quantity, int categoryID, String description, String groupProduct) {
+    public Product(String proName, double importPrice, double sellPrice, int quantity, String category, String supplier) {
+        this.proName = proName;
+        this.importPrice = importPrice;
+        this.sellPrice = sellPrice;
+        this.quantity = quantity;
+        this.category = category;
+        this.supplier = supplier;
+    }
+
+    public Product() {
+
+
+    }
+
+    public Product(int id, String proName, double importPrice, double sellPrice, int quantity, String category, String description, String supplier) {
         this.id = id;
         this.proName = proName;
         this.importPrice = importPrice;
         this.sellPrice = sellPrice;
         this.quantity = quantity;
-        this.categoryID = categoryID;
+        this.category = category;
         this.description = description;
-        this.groupProduct = groupProduct;
+        this.supplier = supplier;
     }
 
     public int getId() {
@@ -64,12 +85,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public int getCategoryID() {
-        return categoryID;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getDescription() {
@@ -80,11 +101,11 @@ public class Product {
         this.description = description;
     }
 
-    public String getGroupProduct() {
-        return groupProduct;
+    public String getSupplier() {
+        return supplier;
     }
 
-    public void setGroupProduct(String groupProduct) {
-        this.groupProduct = groupProduct;
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
     }
 }

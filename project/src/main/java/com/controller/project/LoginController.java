@@ -28,6 +28,7 @@ public class LoginController {
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("admin site");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.resizableProperty().setValue(false);
             stage.show();
         } else if (user != null && user.getAbility() > 1) {

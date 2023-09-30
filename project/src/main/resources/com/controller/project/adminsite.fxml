@@ -26,7 +26,7 @@
    <children>
       <MenuBar fx:id="menuBar" prefHeight="98.0" prefWidth="1026.0">
         <menus>
-          <Menu fx:id="dashboard" mnemonicParsing="false" text="DashBoard">
+          <Menu fx:id="dashboard" mnemonicParsing="false" onAction="#displayDashboard" text="DashBoard">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -36,8 +36,8 @@
                </graphic></Menu>
           <Menu mnemonicParsing="false" text="Products">
             <items>
-              <MenuItem mnemonicParsing="false" text="Category" />
-              <MenuItem mnemonicParsing="false" text="New product" />
+              <MenuItem mnemonicParsing="false" onAction="#displayCategory" text="Category" />
+              <MenuItem mnemonicParsing="false" onAction="#displayNewProduct" text="New product" />
                   <MenuItem mnemonicParsing="false" text="Inventory" />
                   <MenuItem mnemonicParsing="false" text="Discard product" />
             </items>
@@ -112,7 +112,7 @@
       </MenuBar>
       <StackPane>
          <children>
-            <AnchorPane accessibleRole="MENU_ITEM" prefHeight="658.0" prefWidth="1026.0" stylesheets="@adminsite.css" visible="false">
+            <AnchorPane fx:id="dashboardScreen" accessibleRole="MENU_ITEM" prefHeight="658.0" prefWidth="1026.0" stylesheets="@adminsite.css">
                <children>
                   <Button fx:id="outBut" accessibleRole="MENU_ITEM" layoutX="1010.0" layoutY="-13.0" mnemonicParsing="false" onAction="#logout" prefHeight="0.0" prefWidth="1.0" visible="false" />
                   <BarChart fx:id="barChart" alternativeColumnFillVisible="true" layoutX="113.0" layoutY="212.0" prefHeight="388.0" prefWidth="433.0" title="Daily revenue">
@@ -158,7 +158,7 @@
                   <PieChart layoutX="629.0" layoutY="266.0" prefHeight="280.0" prefWidth="350.0" />
                </children>
             </AnchorPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" visible="false">
+            <BorderPane fx:id="categoryScreen" prefHeight="200.0" prefWidth="200.0" visible="false">
                <top>
                   <AnchorPane prefHeight="121.0" prefWidth="1026.0" BorderPane.alignment="CENTER">
                      <children>
@@ -167,7 +167,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <TextField layoutX="105.0" layoutY="55.0" prefHeight="26.0" prefWidth="273.0" promptText="Search here..." />
+                        <TextField fx:id="searchTbCate" layoutX="105.0" layoutY="55.0" prefHeight="26.0" prefWidth="273.0" promptText="Search here..." />
                         <ImageView fitHeight="41.0" fitWidth="42.0" layoutX="48.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../image/search.png" />
@@ -177,35 +177,43 @@
                   </AnchorPane>
                </top>
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="tbCategory" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID Product" />
+                      <TableColumn fx:id="colIdCate" prefWidth="75.0" text="ID Product" />
                       <TableColumn prefWidth="130.4000244140625" text="Image" />
-                        <TableColumn minWidth="3.20001220703125" prefWidth="170.3999786376953" text="Product's name" />
-                        <TableColumn prefWidth="169.5999755859375" text="Product's Group" />
-                        <TableColumn prefWidth="124.79998779296875" text="Capital price" />
-                        <TableColumn prefWidth="131.20001220703125" text="Price" />
-                        <TableColumn prefWidth="119.199951171875" text="Current inventory" />
+                        <TableColumn fx:id="colProNameCate" minWidth="3.20001220703125" prefWidth="170.3999786376953" text="Product's name" />
+                        <TableColumn fx:id="colGroupCate" prefWidth="169.5999755859375" text="Product's Group" />
+                        <TableColumn fx:id="colCapPriceCate" prefWidth="124.79998779296875" text="Capital price" />
+                        <TableColumn fx:id="colPriceCate" prefWidth="131.20001220703125" text="Price" />
+                        <TableColumn fx:id="colCurrentInCate" prefWidth="119.199951171875" text="Current inventory" />
                         <TableColumn prefWidth="104.00006103515625" />
                     </columns>
                   </TableView>
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="newProductSreen" prefHeight="200.0" prefWidth="200.0" visible="false">
                <top>
                   <AnchorPane prefHeight="138.0" prefWidth="1026.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField layoutX="102.0" layoutY="69.0" prefHeight="26.0" prefWidth="312.0" promptText="Search here..." />
-                        <ImageView fitHeight="38.0" fitWidth="42.0" layoutX="52.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="searchTb" layoutX="175.0" layoutY="69.0" prefHeight="26.0" prefWidth="312.0" promptText="Search here..." />
+                        <ImageView fitHeight="38.0" fitWidth="42.0" layoutX="125.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../image/search.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="685.0" layoutY="64.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #3aff1f;" text="Create new" textFill="WHITE">
+                        <Button layoutX="685.0" layoutY="64.0" mnemonicParsing="false" onAction="#creatNewProduct" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #3aff1f;" text="Create new" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Button>
+                        <Button layoutX="23.0" layoutY="88.0" mnemonicParsing="false" onAction="#refreshTb" style="-fx-background-color: transparent;" text="Refresh">
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/refresh.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </AnchorPane>
                </top>
