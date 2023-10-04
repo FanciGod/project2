@@ -53,7 +53,7 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Product sales" />
                   <MenuItem mnemonicParsing="false" text="Bill" />
-                  <MenuItem mnemonicParsing="false" text="Import goods" />
+                  <MenuItem mnemonicParsing="false" onAction="#displayImportProduct" text="Import goods" />
             </items>
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -231,6 +231,24 @@
                      </columns>
                   </TableView>
                </center>
+            </BorderPane>
+            <BorderPane fx:id="saleScreen" prefHeight="200.0" prefWidth="200.0" visible="false" />
+            <BorderPane fx:id="importGoodsScreen" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <center>
+                  <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </center>
+               <top>
+                  <AnchorPane prefHeight="122.0" prefWidth="1026.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button layoutX="694.0" layoutY="36.0" mnemonicParsing="false" onAction="#importProduct" text="Import Product" />
+                     </children>
+                  </AnchorPane>
+               </top>
             </BorderPane>
          </children>
       </StackPane>

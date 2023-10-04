@@ -55,6 +55,10 @@ public class Adminsite implements Initializable {
     public TableColumn<Product, Integer> colCurrentInCate;
     @FXML
     public TextField searchTbCate;
+    @FXML
+    public BorderPane importGoodsScreen;
+    @FXML
+    public BorderPane saleScreen;
 
     @FXML
     private TableColumn<Product, Double> colCapPrice;
@@ -82,6 +86,7 @@ public class Adminsite implements Initializable {
     @FXML
     BarChart barChart;
     final ObservableList<Product> proList = FXCollections.observableArrayList();
+    ObservableList<Product> finalProductList = FXCollections.observableArrayList();
 
     public void regissite() throws IOException {
         loader = new FXMLLoader();
@@ -128,13 +133,14 @@ public class Adminsite implements Initializable {
         tbProduct.setItems(proList);
         searchFilter();
 
+
         colIdCate.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
         colProNameCate.setCellValueFactory(new PropertyValueFactory<Product, String>("proName"));
         colCapPriceCate.setCellValueFactory(new PropertyValueFactory<Product, Double>("importPrice"));
         colGroupCate.setCellValueFactory(new PropertyValueFactory<>("category"));
         colPriceCate.setCellValueFactory(new PropertyValueFactory<Product, Double>("sellPrice"));
         colCurrentInCate.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-        tbCategory.setItems(proList);
+        tbCategory.setItems(finalProductList);
         searchFilterCate();
     }
 
@@ -207,50 +213,83 @@ public class Adminsite implements Initializable {
         AdminModel adminModel = new AdminModel();
         if (adminModel.getDataProduct() != null) {
             proList.addAll(adminModel.getDataProduct());
+            finalProductList.addAll(adminModel.getDataProduct());
         }
     }
 
     public void creatNewProduct(ActionEvent event) {
         try {
             loader = new FXMLLoader();
-            Pane root = loader.load(Objects.requireNonNull(this.getClass().getResource("createNewProduct.fxml")).openStream());
+            Pane root = loader.load(Objects.requireNonNull(getClass().getResource("createNewProduct.fxml")).openStream());
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("Create new");
             stage.centerOnScreen();
+            stage.setResizable(false);
             stage.show();
         } catch (IOException ignore) {
         }
     }
 
 
-
     public void refreshTb(ActionEvent event) {
         AdminModel adminModel = new AdminModel();
         List<Product> productList = adminModel.getDataProduct();
-        Product product = productList.get(productList.size()-1);
+        Product product = productList.get(productList.size() - 1);
         ObservableList<Product> products = tbProduct.getItems();
         if (productList.size() > products.size()) {
             products.add(product);
             tbProduct.setItems(products);
+            tbCategory.setItems(products);
         }
     }
 
-    public void displayDashboard(){
+    public void displayDashboard() {
         dashboardScreen.setVisible(true);
         categoryScreen.setVisible(false);
         newProductSreen.setVisible(false);
-    };
+        importGoodsScreen.setVisible(false);
+    }
 
-    public void displayCategory(){
+    ;
+
+    public void displayCategory() {
         dashboardScreen.setVisible(false);
         categoryScreen.setVisible(true);
         newProductSreen.setVisible(false);
-    };
+        importGoodsScreen.setVisible(false);
+    }
 
-    public void displayNewProduct(){
+    ;
+
+    public void displayNewProduct() {
         dashboardScreen.setVisible(false);
         categoryScreen.setVisible(false);
         newProductSreen.setVisible(true);
-    };
+        importGoodsScreen.setVisible(false);
+    }
+
+    ;
+
+    public void importProduct(ActionEvent event) {
+        try {
+            loader = new FXMLLoader();
+            Pane root = loader.load(Objects.requireNonNull(getClass().getResource("importProductSite.fxml")).openStream());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Import product");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void displayImportProduct(ActionEvent event) {
+        dashboardScreen.setVisible(false);
+        categoryScreen.setVisible(false);
+        newProductSreen.setVisible(false);
+        importGoodsScreen.setVisible(true);
+    }
 }

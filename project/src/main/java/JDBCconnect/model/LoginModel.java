@@ -18,9 +18,11 @@ public class LoginModel {
             ResultSet res = pre.executeQuery();
             if (res.next()) {
                 User user = new User();
+                user.setId(res.getInt("Account_ID"));
                 user.setUsername(res.getString("Account_name"));
                 user.setPassword(res.getString("Password"));
-                user.setAbility(res.getInt("Role_ID"));;
+                user.setAbility(res.getInt("Role_ID"));
+                user.setName(res.getString("Name"));
                 return user;
             } else {
                 return null;

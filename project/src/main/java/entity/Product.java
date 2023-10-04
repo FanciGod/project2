@@ -1,14 +1,14 @@
 package entity;
 
 public class Product {
-    private int id;
-    private String proName;
-    private double importPrice;
-    private double sellPrice;
-    private int quantity;
-    private String category;
-    private String description;
-    private String supplier;
+    protected int id;
+    protected String proName;
+    protected double importPrice;
+    protected double sellPrice;
+    protected int quantity;
+    protected String category;
+    protected String description;
+    protected String supplier;
 
     public Product(String proName, double importPrice, double sellPrice, int quantity, String category, String description, String supplier) {
         this.proName = proName;

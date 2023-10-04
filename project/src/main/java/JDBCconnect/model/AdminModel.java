@@ -21,7 +21,7 @@ public class AdminModel {
                 "FROM project.product \n" +
                 "join project.category on product.Category_ID = category.Category_ID\n" +
                 "join project.supplier on product.Supplier_ID = supplier.Supplier_ID\n" +
-                "Where product.Is_deleted = 0;";
+                "Where product.Is_deleted = 0 order by product.Product_ID asc";
         try (Connection connection = ConnectDTB.getJDBCConnect();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
              ResultSet resultSet = preparedStatement.executeQuery()) {

@@ -22,8 +22,12 @@ public class Login {
         String uname = username.getText();
         String pword = password.getText();
 
+        ImportProductSite importProductSite = new ImportProductSite();
+        importProductSite.takeDataAccount(uname, pword);
+
         LoginController loginController = new LoginController();
         loginController.loginCheck(uname, pword, actionEvent);
+
 
     }
 }

@@ -86,11 +86,7 @@ public class CreateNewProduct implements Initializable {
         tbProGroup.setItems(proGroupList);
 
         setSupTBData();
-        colSupID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colSupName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colSupAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-        colSupPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        tbSup.setItems(proSupList);
+        ImportProductSite.getDataSup(colSupID, colSupName, colSupAddress, colSupPhone, tbSup, proSupList);
     }
 
     private void setProGroupData() {
